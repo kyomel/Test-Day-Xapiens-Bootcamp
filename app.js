@@ -132,18 +132,11 @@ numbers
 console.log(numbers);
 
 // Test no 12 
-function generatePyramid() {
-    let totalNumberofRows = 8;
-    let output = '';
-    for (let i = 1; i <= totalNumberofRows; i++) {
-        
-        for (let j = totalNumberofRows-1; j >= i; j--) {
-            parseFloat(j.toString().split(''))
-            output += j + ' ';
-        }
-        console.log(output);
-        output = '';
+function generatePyramid(n) {
+    let getPiramid = n.split('')
+    for(let i=0; i < getPiramid.length; i++) {
+        console.log(String(i+1).padEnd((getPiramid.length - i), '0'))
     }
 }
 
-generatePyramid();
+generatePyramid('1234567');

@@ -6,15 +6,40 @@ let third = ['rolling', 'her', 'eyes']
 let result = first.join(' ') + ' ' + second.join(' ') + ' ' + third.join(' ');
 console.log(result);
 
-// // Test no 2
+// Test no 2
 function checkNumber(number){
-    if(number%2) {
-        console.log("Imperio")
+    if(number%2 == 0) {
+        if(number >=5 && number <=10) {
+            console.log("Imperio");
+        } else {
+            console.log("Crucio");
+        }
     } else {
-        console.log("Crucio")
+        console.log("Imperio")
     }
 }
-checkNumber(1);
+checkNumber(10);
+// Tes no 3
+function checkNumber(){
+    for(let i = 1; i <= 200; i++) 
+     if (i%2){
+         if (i%5 == 0) {
+            console.log(i,": Ganjil Kelipatan 5"); 
+         } else {
+            console.log(i,": Ganjil")
+         }
+    } else {
+        if (i%100 == 0) {
+            console.log(i,": Genap Kelipatan 100")
+        } else if (i%5 == 0) {
+            console.log(i,": Genap Kelipatan 5");
+        } else {
+            console.log(i,": Genap");
+        }
+     }
+ }
+ checkNumber();
+
 // Test no 4
 function panjangKata(k) {
     let panjang = 0;
@@ -61,6 +86,9 @@ let result1 =  pricesSort.reduce(function(result1, field, index) {
   result1[menus[index]] = field;
   return result1;
 }, {})
+
+// Test no 7
+
 
 console.log(result1);
 
@@ -139,3 +167,29 @@ function generatePyramid(n) {
 }
 
 generatePyramid('1234567');
+
+//  Test no 13
+
+
+
+//  Test no 14
+const shifting = (char) => {
+
+}
+
+
+
+//  Test no 15
+const randomNumber = (number) => {
+    let count = 0
+    do {
+        count += 1
+        tebak = Math.floor(Math.random() *100) + 1
+        console.log(tebak)
+    } while (number !== tebak)
+    console.log(count)
+    console.log(`angka: ${number}, angka tebakan ${tebak}, langkah yang dibutuhkan untuk menemukan: ${count}`)
+}
+
+randomNumber(47)
+

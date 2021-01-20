@@ -1,2 +1,2 @@
-# Javascipt Basic Test Day 2
+# Javascipt OOP Day 3
 ### by Michael Stevan Lapandio

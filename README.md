@@ -1,2 +1,2 @@
-# Javascipt Basic Test Day 2
+# This is Journey Test Xapiens Bootcamp, enjoy!!!
 ### by Michael Stevan Lapandio

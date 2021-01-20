@@ -7,15 +7,14 @@ let result = first.join(' ') + ' ' + second.join(' ') + ' ' + third.join(' ');
 console.log(result);
 
 // // Test no 2
-let n;
-function checkNumber(n){
-    if(n % 2 == 0) {
-        console.log("Crucio")
-    } else if (Math.abs(n % 2) == 1){
+function checkNumber(number){
+    if(number%2) {
         console.log("Imperio")
+    } else {
+        console.log("Crucio")
     }
 }
-console.log(checkNumber(7))
+checkNumber(1);
 // Test no 4
 function panjangKata(k) {
     let panjang = 0;
@@ -132,18 +131,13 @@ numbers
 console.log(numbers);
 
 // Test no 12 
-function generatePyramid() {
-    let totalNumberofRows = 8;
-    let output = '';
-    for (let i = 1; i <= totalNumberofRows; i++) {
-        
-        for (let j = totalNumberofRows-1; j >= i; j--) {
-            parseFloat(j.toString().split(''))
-            output += j + ' ';
-        }
-        console.log(output);
-        output = '';
+function generatePyramid(n) {
+    let getPiramid = n.split('')
+    for(let i=0; i < getPiramid.length; i++) {
+        console.log(String(i+1).padEnd((getPiramid.length - i), '0'))
     }
 }
 
-generatePyramid();
+generatePyramid('1234567');
+
+// 

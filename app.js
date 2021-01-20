@@ -139,5 +139,3 @@ function generatePyramid(n) {
 }
 
 generatePyramid('1234567');
-
-// 

@@ -1,2 +1,2 @@
-# This is Journey Test Xapiens Bootcamp, enjoy!!!
+# This is Day 3 about OOP Javascript
 ### by Michael Stevan Lapandio

@@ -2,7 +2,6 @@
 
 const axios = require('axios');
 
-
 async function join() {
     try {
         let response = await axios.get("https://jsonplaceholder.typicode.com/posts");

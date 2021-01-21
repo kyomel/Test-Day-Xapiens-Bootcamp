@@ -1,2 +1,2 @@
-# This is Journey Test Xapiens Bootcamp, enjoy!!!
+# Day 4 Javascript Asynchronous
 ### by Michael Stevan Lapandio

@@ -1,2 +1,2 @@
-# This is Journey Test Xapiens Bootcamp, enjoy!!!
+# This is test case Javascript (Node js)
 ### by Michael Stevan Lapandio

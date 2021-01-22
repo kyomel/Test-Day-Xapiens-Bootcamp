@@ -1,0 +1,26 @@
+{
+  "name": "test-day-xapiens-bootcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetcher.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "fetcher": "^0.2.0",
+    "node-fetch": "^2.6.1",
+    "node-fetcher": "^0.0.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyomel/Test-Day-Xapiens-Bootcamp.git"
+  },
+  "author": "kyomel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyomel/Test-Day-Xapiens-Bootcamp/issues"
+  },
+  "homepage": "https://github.com/kyomel/Test-Day-Xapiens-Bootcamp#readme"
+}

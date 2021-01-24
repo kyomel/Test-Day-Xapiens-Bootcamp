@@ -62,11 +62,11 @@ class Fetcher {
 const fetcher = new Fetcher();
 
 async function allFetcher(){
-    fetcher.getData();
-    fetcher.delData();
-    fetcher.postData();
-    fetcher.putData();
-    fetcher.patchData();
+    const getData = await fetcher.getData();
+    const delData = await fetcher.delData();
+    const postData = await fetcher.postData();
+    const putData = await fetcher.putData();
+    const patchData = await fetcher.patchData();
 }
 
 allFetcher();

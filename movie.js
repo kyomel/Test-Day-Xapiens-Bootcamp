@@ -20,7 +20,9 @@ class movieAPI {
         try {
             const api = url+search;
             let searchData = await axios(api)
-            return searchData.data;
+            let moviesList = searchData.data.results;
+            let movieVote = moviesList.filter((e) => e.vote_average > 7.5);
+            return moviesList;
         } catch (error) {
             console.log(error);
         }

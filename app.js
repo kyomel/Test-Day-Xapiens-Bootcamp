@@ -3,7 +3,6 @@
 
 // Caporal provides you with a program instance
 const { program } = require('@caporal/core');
-const obfuscator = require('javascript-obfuscator');
 const ip = require('ip');
 const publicIp = require('public-ip');
 const ineed = require('ineed');

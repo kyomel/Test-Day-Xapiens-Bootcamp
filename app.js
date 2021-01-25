@@ -183,21 +183,23 @@ program
     .command("obfuscate")
     .argument("<text>", "Text to be encode")
     .action (({ logger, args}) => {
-        let res = obfuscator.obfuscate(args.text, {
-            compact: false,
-            controlFlowFlattening: true,
-            controlFlowFlatteningThreshold: 1,
-            numbersToExpressions: true,
-            simplify: true,
-            shuffleStringArray: true,
-            splitStrings: true,
-            stringArrayThreshold: 1
-        });
-        logger.info(res);
+        logger.info(
+            args.text.split("")
+            .map((char) => `&#${char.charCodeAt(0)};`)
+            .join("")
+        );
     })
 
 // no 5
-    
+    .command("random")
+    .option("--random", "random", {
+        default: 32,
+        validator: program.NUMBER,
+    })
+    .action(({ args, options }) => {
+        console.log(options.test);
+        // console.log(args, options);
+    })
 
 // no 6
     .command("ip")

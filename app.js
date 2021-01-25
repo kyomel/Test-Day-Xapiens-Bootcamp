@@ -28,6 +28,7 @@ program
         })
         logger.info(capitalize.join(" "));
     })
+
 // no 2
     .command("add")
     .argument("<num1>", "Add your number", {
@@ -87,7 +88,6 @@ program
         const num2 = args.num2
         const num3 = args.num3
         const num4 = args.num4
-
         const num5 = args.num5
 
         const result = (num1 - num2 - num3 - num4 - num5);
@@ -158,6 +158,24 @@ program
 
         logger.info(result);
     })
+
+// no 3
+    .command("palindrome")
+    .argument("<text>", "Text to be palindrome")
+    .action (({ logger, args }) => {
+        let original = args.text.replace(/[\s"'.,-\/#!$%\^&*;:{}=\-_`~()\\\[\]@+|?><]/g,"").toLowerCase();
+        let reverse = original.split("").reverse().join("");
+        if (original == reverse) {
+            logger.info("Is the Palindrome: Yes")
+            return true
+            
+        } else {
+            logger.info("Is the Palindrome: No")
+            return false
+        }
+    })
+
+//  no 4
 program.run()
 
 

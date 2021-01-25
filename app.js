@@ -2,7 +2,11 @@
 // file: hello-world.js (make the file executable using `chmod +x hello.js`)
 
 // Caporal provides you with a program instance
-const { program } = require("@caporal/core");
+const { program } = require('@caporal/core');
+const obfuscator = require('javascript-obfuscator');
+const ip = require('ip');
+const publicIp = require('public-ip');
+const ineed = require('ineed');
 
 program
 // no 1
@@ -176,6 +180,54 @@ program
     })
 
 //  no 4
+    .command("obfuscate")
+    .argument("<text>", "Text to be encode")
+    .action (({ logger, args}) => {
+        let res = obfuscator.obfuscate(args.text, {
+            compact: false,
+            controlFlowFlattening: true,
+            controlFlowFlatteningThreshold: 1,
+            numbersToExpressions: true,
+            simplify: true,
+            shuffleStringArray: true,
+            splitStrings: true,
+            stringArrayThreshold: 1
+        });
+        logger.info(res);
+    })
+
+// no 5
+    
+
+// no 6
+    .command("ip")
+    .action(({ logger }) => {
+        let result = ip.address();
+        logger.info(result);
+    })
+
+// no 7
+    .command("ip-external")
+    .action(({ logger }) => {
+        (async () => {
+            let result = await publicIp.v4();
+            logger.info(result);
+        })();
+    })
+
+// no 8
+    .command("headlines")
+    .action(() => {
+        ineed.collect.images.hyperlinks.from('https://www.kompas.com/tag/headline',
+        function (err, response, result) {
+            let headline = result.hyperlinks;
+            restRenameHead = JSON.parse(JSON.stringify(headline).split('"href":').join('"URL":'));
+            restRenameText = JSON.parse(JSON.stringify(restRenameHead).split('"text":').join('"Title":'),);
+            let resultProperty = restRenameText;
+            console.log(resultProperty);
+        })
+    })
 program.run()
+
 
 

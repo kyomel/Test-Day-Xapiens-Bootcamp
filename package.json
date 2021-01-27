@@ -1,0 +1,25 @@
+{
+  "name": "test-day-xapiens-bootcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyomel/Test-Day-Xapiens-Bootcamp.git"
+  },
+  "author": "kyomel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyomel/Test-Day-Xapiens-Bootcamp/issues"
+  },
+  "homepage": "https://github.com/kyomel/Test-Day-Xapiens-Bootcamp#readme"
+}

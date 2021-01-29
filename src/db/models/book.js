@@ -20,8 +20,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Book.init({
-    authorId: DataTypes.INTEGER,
-    publisherId: DataTypes.INTEGER,
+    authorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Author',
+        key: 'id'
+      }
+    },
+    publisherId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Publisher',
+        key: 'id'
+      }
+    },
     title: DataTypes.STRING,
     price: DataTypes.STRING,
     year: DataTypes.DATE

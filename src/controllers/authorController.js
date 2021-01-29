@@ -44,6 +44,7 @@ class userController {
         })
         response({ message: "update author success", data: payload})(res, 200);
     }
+
 }
 
 module.exports = userController;

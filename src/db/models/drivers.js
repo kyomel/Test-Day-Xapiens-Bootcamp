@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      drivers.hasMany(models.orders, {
+        foreignKey: 'driver_id'
+      })
     }
   };
   drivers.init({

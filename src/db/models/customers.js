@@ -11,12 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      customers.hasMany(models.orders, {
+        foreignKey: 'user_id'
+      })
     }
   };
   customers.init({
     full_name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      unique: {
+        args: true,
+        msg: 'username must be unique',
+      },
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: {
+        args: true,
+        msg: 'email must be unique',
+      },
+    },
     phone_number: DataTypes.STRING
   }, {
     sequelize,

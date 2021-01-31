@@ -1,0 +1,30 @@
+{
+  "name": "test-day-xapiens-bootcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "faker": "^5.2.0",
+    "sequelize-cli": "^6.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyomel/Test-Day-Xapiens-Bootcamp.git"
+  },
+  "author": "kyomel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyomel/Test-Day-Xapiens-Bootcamp/issues"
+  },
+  "homepage": "https://github.com/kyomel/Test-Day-Xapiens-Bootcamp#readme"
+}

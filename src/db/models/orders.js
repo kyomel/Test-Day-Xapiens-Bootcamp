@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id'
       }),
       orders.belongsTo(models.drivers, {
-        foreignKey: 'drive_id'
+        foreignKey: 'driver_id'
       })
     }
   };

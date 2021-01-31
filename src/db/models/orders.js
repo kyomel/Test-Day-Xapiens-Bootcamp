@@ -11,12 +11,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      orders.hasMany(models.order_items, {
+        foreignKey: 'order_id'
+      }),
+      orders.belongsTo(models.customers, {
+        foreignKey: 'user_id'
+      }),
+      orders.belongsTo(models.drivers, {
+        foreignKey: 'drive_id'
+      })
     }
   };
   orders.init({
-    user_id: DataTypes.INTEGER,
-    status: DataTypes.ENUM,
-    driver_id: DataTypes.INTEGER
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'customers',
+        key: 'id'
+      }
+    },
+    status: {
+      type: DataTypes.ENUM({
+        values: ['accepted', 'sending', 'done', 'failure']
+      })
+    },
+    driver_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'drivers',
+        key: 'id'
+      }
+    },
   }, {
     sequelize,
     modelName: 'orders',

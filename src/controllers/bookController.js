@@ -1,7 +1,6 @@
 'use strict'
 
 const { Book, Author, Publisher } = require('../db/models');
-const book = require('../db/models/book');
 const response = require('../helper/response');
 
 class bookController {
@@ -88,6 +87,23 @@ class bookController {
             })
             response({ message: "retrieved user", data: payload})(res, 200);
         }
+    }
+
+    static async getAuthorPublisher(req, res) {
+        const payload = await Author.findOne({
+            include: {
+                model: Publisher,
+                attributes: ['name', 'address'],
+                through: {
+                    attributes: [],
+                },
+            },
+        }, {
+            where: {
+                id: req.params.id
+            }
+        })
+        response({ message: "retrieved author and publisher", data: payload})(res, 200);
     }
         
 }

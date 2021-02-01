@@ -18,9 +18,10 @@ router.post('/books', bookController.createBook);
 router.post('/publishers/:id', bookController.updateBook);
 
 // Random book
-router.get('/authors/:id/books', bookController.getBookAuthor);
+// router.get('/authors/:id/books', bookController.getBookAuthor);
 router.get('/authors/:id/publishers', bookController.getAuthorPublisher);
 router.get('/bookSorting', bookController.getBookSpesific);
+router.get('/authors/:id/publishers', bookController.getAuthorPublisher);
 
 // publisher controller
 router.get('/publishers', publisherController.getPublisher);

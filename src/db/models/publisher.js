@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Publisher.hasMany(models.Book, {
         foreignKey: 'publisherId'
       })
+      Publisher.belongsToMany(models.Author, { through: 'Book', foreignKey: { name: 'publisherId' } });
     }
   };
   Publisher.init({

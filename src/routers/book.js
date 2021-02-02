@@ -12,6 +12,6 @@ routers.delete('/:id', bookController.delBook);
 routers.post('/', bookController.createBook);
 routers.post('/:id', bookController.updateBook);
 
-routers.put('/uploadCover/:id', multer({ storage: storageBook, fileFilter: imageFilter, limits: { fileSize: maxSize }}).single('cover'), bookController.uploadCover);
+routers.put('/uploadCover/:id', multer({ storage: storageBook, fileFilter: imageFilter, limits: { fileSize: maxSize }}).single('cover_book'), bookController.uploadCover);
 
 module.exports = routers;

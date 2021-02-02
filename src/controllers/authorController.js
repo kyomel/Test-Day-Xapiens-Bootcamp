@@ -46,7 +46,20 @@ class userController {
     }
 
     static async uploadPhoto(req, res){
-        return response({ message: "photo upload success"})(res, 200);
+        try {
+            let filename = req.file.filename;
+            const payload = await Author.update({
+                photo: filename
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            })
+            response({ message: "Success to upload photo", data: payload})(res,200)
+        } catch(error) {
+            response({ message: "Fail to upload photo", data: payload})(res,400)
+        }
     }
 }
 

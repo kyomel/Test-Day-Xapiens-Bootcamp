@@ -2,6 +2,7 @@
 
 const { Book, Author, Publisher } = require('../db/models');
 const response = require('../helper/response');
+const photoAuthor = require('../middlewares/uploadPhoto');
 
 class bookController {
     static async getBook(req, res) {
@@ -107,7 +108,20 @@ class bookController {
     }
 
     static async uploadCover(req, res) {
-        return response({ message: "cover book upload success"})(res, 200);
+        try {
+            let filename = req.file.filename;
+            const payload = await Book.update({
+                photo: filename
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            })
+            response({ message: "Success to upload photo", data: payload})(res,200)
+        } catch(error) {
+            response({ message: "Fail to upload photo", data: payload})(res,400)
+        }
     }       
 }
 

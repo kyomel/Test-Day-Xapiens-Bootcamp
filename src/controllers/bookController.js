@@ -2,7 +2,6 @@
 
 const { Book, Author, Publisher } = require('../db/models');
 const response = require('../helper/response');
-const photoAuthor = require('../middlewares/uploadPhoto');
 
 class bookController {
     static async getBook(req, res) {

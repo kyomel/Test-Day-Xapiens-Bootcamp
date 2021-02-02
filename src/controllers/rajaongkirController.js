@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const axios = require('axios').default;
-const response = require('../helper/responseAPI');
+const responses = require('../helper/responseAPI');
 
 const urlAPI = "https://api.rajaongkir.com/starter/";
 
@@ -15,9 +15,9 @@ class rajaongkirController {
                     key: process.env.API_KEY,
                 },
             });
-            response({ message: "data retrieved", data: payload.data})(res);
+            responses({ message: "data retrieved", data: payload.data})(res);
         } catch(error) {
-            response({ message: "Error", data: response.data })(res, 400);
+            responses({ message: "Error", data: error.response.data  })(res, 400);
         }
     }
 
@@ -28,9 +28,9 @@ class rajaongkirController {
                     key: process.env.API_KEY,
                 },
             });
-            response({ message: "data retrieved", data: payload.data})(res);
+            responses({ message: "data retrieved", data: payload.data})(res);
         } catch(error) {
-            response({ message: "Error", data: response.data })(res, 400);
+            responses({ message: "Error", data: error.response.data })(res, 400);
         }
     }
 
@@ -41,9 +41,9 @@ class rajaongkirController {
                     key: process.env.API_KEY,
                 },
             });
-            response({ message: "data retrieved", data: payload.data })(res)
+            responses({ message: "data retrieved", data: payload.data })(res)
         } catch(error) {
-            response({ message: "Error", data: response.data })(res, 400);
+            responses({ message: "Error", data: error.response.data })(res, 400);
         }
     }
 }

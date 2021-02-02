@@ -24,13 +24,18 @@ class userController {
         response({ message: "author delete success", data: payload})(res, 200);
     }
 
-    static async createAuthor(req, res) {
+    static async createAuthor(req, res, next) {
+        try {
         const payload = await Author.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email
         })
         response({ message: "add author success", data: payload})(res, 200);
+        } catch(err) {
+            res.status(422);
+            next(err);
+        }
     }
 
     static async updateAuthor(req, res) { 
@@ -45,7 +50,7 @@ class userController {
         response({ message: "update author success", data: payload})(res, 200);
     }
 
-    static async uploadPhoto(req, res){
+    static async uploadPhoto(req, res, next){
         try {
             let filename = req.file.filename;
             const payload = await Author.update({
@@ -57,8 +62,9 @@ class userController {
                 }
             })
             response({ message: "Success to upload photo", data: payload})(res,200)
-        } catch(error) {
-            response({ message: "Fail to upload photo", error})(res,400)
+        } catch(err) {
+            res.status(400);
+            next(err);
         }
     }
 }

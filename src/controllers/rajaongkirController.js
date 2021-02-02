@@ -8,7 +8,7 @@ const urlAPI = "https://api.rajaongkir.com/starter/";
 
 
 class rajaongkirController {
-    static async getDataCost(req, res) {
+    static async getDataCost(req, res, next) {
         try {
             const payload = await axios.post(urlAPI + "cost", req.body, {
                 headers: {
@@ -16,12 +16,13 @@ class rajaongkirController {
                 },
             });
             responses({ message: "data retrieved", data: payload.data})(res);
-        } catch(error) {
-            responses({ message: "Error", data: error.response.data  })(res, 400);
+        } catch(err) {
+            res.status(403);
+            next(err);
         }
     }
 
-    static async getDataCity(req,res) {
+    static async getDataCity(req, res, next) {
         try {
             const payload = await axios.post(urlAPI + "city", req.body, {
                 headers: {
@@ -29,12 +30,13 @@ class rajaongkirController {
                 },
             });
             responses({ message: "data retrieved", data: payload.data})(res);
-        } catch(error) {
-            responses({ message: "Error", data: error.response.data })(res, 400);
+        } catch(err) {
+            res.status(403);
+            next(err);
         }
     }
 
-    static async getDataProvince(req, res) {
+    static async getDataProvince(req, res, next) {
         try {
             const payload = await axios.post(urlAPI + "province", req.body, {
                 headers: {
@@ -42,8 +44,9 @@ class rajaongkirController {
                 },
             });
             responses({ message: "data retrieved", data: payload.data })(res)
-        } catch(error) {
-            responses({ message: "Error", data: error.response.data })(res, 400);
+        } catch(err) {
+            res.status(403);
+            next(err);
         }
     }
 }

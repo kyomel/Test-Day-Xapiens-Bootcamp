@@ -1,10 +1,10 @@
 'use strict'
 
+require('dotenv').config();
 const axios = require('axios').default;
 const response = require('../helper/responseAPI');
 
 const urlAPI = "https://api.rajaongkir.com/starter/";
-const APIkey = "430eeff762825a18f249247eee8de89b";
 
 
 class rajaongkirController {
@@ -12,7 +12,7 @@ class rajaongkirController {
         try {
             const payload = await axios.post(urlAPI + "cost", req.body, {
                 headers: {
-                    key: APIkey,
+                    key: process.env.API_KEY,
                 },
             });
             response({ message: "data retrieved", data: payload.data})(res);
@@ -25,7 +25,7 @@ class rajaongkirController {
         try {
             const payload = await axios.post(urlAPI + "city", req.body, {
                 headers: {
-                    key: APIkey,
+                    key: process.env.API_KEY,
                 },
             });
             response({ message: "data retrieved", data: payload.data})(res);
@@ -38,7 +38,7 @@ class rajaongkirController {
         try {
             const payload = await axios.post(urlAPI + "province", req.body, {
                 headers: {
-                    key: APIkey,
+                    key: process.env.API_KEY,
                 },
             });
             response({ message: "data retrieved", data: payload.data })(res)

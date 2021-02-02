@@ -45,6 +45,9 @@ class userController {
         response({ message: "update author success", data: payload})(res, 200);
     }
 
+    static async uploadPhoto(req, res){
+        return response({ message: "photo upload success"})(res, 200);
+    }
 }
 
 module.exports = userController;

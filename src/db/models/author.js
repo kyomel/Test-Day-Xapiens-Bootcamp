@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
   Author.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    photo: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Author',

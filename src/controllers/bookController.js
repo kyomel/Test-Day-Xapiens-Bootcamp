@@ -105,7 +105,10 @@ class bookController {
         })
         response({ message: "retrieved author and publisher", data: payload})(res, 200);
     }
-        
+
+    static async uploadCover(req, res) {
+        return response({ message: "cover book upload success"})(res, 200);
+    }       
 }
 
 module.exports = bookController;

@@ -120,7 +120,7 @@ class bookController {
             })
             response({ message: "Success to upload photo", data: payload})(res,200)
         } catch(error) {
-            response({ message: "Fail to upload photo", data: payload})(res,400)
+            response({ message: "Fail to upload photo", error})(res,400)
         }
     }       
 }

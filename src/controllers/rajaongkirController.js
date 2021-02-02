@@ -17,7 +17,7 @@ class rajaongkirController {
             });
             response({ message: "data retrieved", data: payload.data})(res);
         } catch(error) {
-            response({ message: "Error", data: error })(res, 400);
+            response({ message: "Error", data: response.data })(res, 400);
         }
     }
 
@@ -30,7 +30,7 @@ class rajaongkirController {
             });
             response({ message: "data retrieved", data: payload.data})(res);
         } catch(error) {
-            response({ message: "Error", data: error })(res, 400);
+            response({ message: "Error", data: response.data })(res, 400);
         }
     }
 
@@ -43,7 +43,7 @@ class rajaongkirController {
             });
             response({ message: "data retrieved", data: payload.data })(res)
         } catch(error) {
-            response({ message: "Error", data: error})(res, 400);
+            response({ message: "Error", data: response.data })(res, 400);
         }
     }
 }

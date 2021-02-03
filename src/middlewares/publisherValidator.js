@@ -1,12 +1,12 @@
 const { check, validationResult } = require('express-validator');
-const { Author } = require('../db/models');
+const { Publisher } =require('../db/models');
 
-const authorValidationRules = () => {
+const publisherValidationRules = () => {
     return [
-        check('firstName').isLength({ max: 20}),
-        check('lastName').isLength({ max: 30 }).optional({ nullable: true }),
+        check('name').isString(),
+        check('address').isString(),
         check("email").isEmail().custom(email => {
-            return Author.findOne( { where: {
+            return Publisher.findOne( { where: {
             email: email
             }}).then(author => {
             if (author) {
@@ -14,10 +14,12 @@ const authorValidationRules = () => {
             }
             });
         }),
+        check('phone').notEmpty(),
+        check('website').optional({ nullable: true })
     ]
 }
 
-const validateAuthor = (req, res, next) =>  {
+const validatePublisher = (req, res, next) =>  {
     const errors = validationResult(req)
     if(errors.isEmpty()) {
         return next()
@@ -29,4 +31,4 @@ const validateAuthor = (req, res, next) =>  {
     })
 }
 
-module.exports = { authorValidationRules, validateAuthor, }
+module.exports = { publisherValidationRules, validatePublisher, }

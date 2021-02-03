@@ -3,9 +3,9 @@ const { Publisher } =require('../db/models');
 
 const publisherValidationRules = () => {
     return [
-        check('name').isString(),
-        check('address').isString(),
-        check("email").isEmail().custom(email => {
+        check('name').exists().isString(),
+        check('address').exists().isString(),
+        check("email").exists().isEmail().custom(email => {
             return Publisher.findOne( { where: {
             email: email
             }}).then(author => {
@@ -14,7 +14,7 @@ const publisherValidationRules = () => {
             }
             });
         }),
-        check('phone').notEmpty(),
+        check('phone').exists(),
         check('website').optional({ nullable: true })
     ]
 }

@@ -3,9 +3,9 @@ const { Author } = require('../db/models');
 
 const authorValidationRules = () => {
     return [
-        check('firstName').isLength({ max: 20}),
+        check('firstName').exists().isLength({ max: 20}),
         check('lastName').isLength({ max: 30 }).optional({ nullable: true }),
-        check("email").isEmail().custom(email => {
+        check("email").exist().isEmail().custom(email => {
             return Author.findOne( { where: {
             email: email
             }}).then(author => {

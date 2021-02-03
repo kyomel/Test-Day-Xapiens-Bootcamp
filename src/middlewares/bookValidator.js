@@ -3,11 +3,11 @@ const { Book } = require('../db/models');
 
 const bookValidationRules = () => {
     return [
-        check('authorId').isNumeric(),
-        check('publisherId').isNumeric(),
-        check('title').isString(),
-        check('price').isDecimal(),
-        check('year').toDate().custom(async(year, { req }) => {
+        check('authorId').exist().isNumeric(),
+        check('publisherId').exists().isNumeric(),
+        check('title').exists().isString(),
+        check('price').exists().isDecimal(),
+        check('year').exists().toDate().custom(async(year, { req }) => {
             // const dueDate = await Book.findOne( { year });
             const expireDate = new Date('2021-12-31');
             if(expireDate <= req.body.year){

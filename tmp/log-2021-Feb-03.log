@@ -85,3 +85,8 @@
 ::1 - - [03/Feb/2021:10:26:28 +0000] "POST /api/v1/publishers HTTP/1.1" 422 45
 ::1 - - [03/Feb/2021:10:34:36 +0000] "POST /api/v1/publishers HTTP/1.1" 422 45
 ::1 - - [03/Feb/2021:10:34:56 +0000] "POST /api/v1/publishers HTTP/1.1" 422 45
+::1 - - [03/Feb/2021:10:44:20 +0000] "POST /api/v1/books HTTP/1.1" - -
+::1 - - [03/Feb/2021:10:44:31 +0000] "POST /api/v1/books HTTP/1.1" - -
+::1 - - [03/Feb/2021:10:45:30 +0000] "POST /api/v1/books HTTP/1.1" - -
+::1 - - [03/Feb/2021:10:47:38 +0000] "POST /api/v1/books HTTP/1.1" 422 38
+::1 - - [03/Feb/2021:10:50:56 +0000] "POST /api/v1/books HTTP/1.1" 200 247

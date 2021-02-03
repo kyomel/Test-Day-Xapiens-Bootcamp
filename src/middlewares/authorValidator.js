@@ -14,7 +14,7 @@ const authorValidationRules = () => {
     ]
 }
 
-const validate = (req, res, next) =>  {
+const validateAuthor = (req, res, next) =>  {
     const errors = validationResult(req)
     if(errors.isEmpty()) {
         return next()
@@ -26,4 +26,4 @@ const validate = (req, res, next) =>  {
     })
 }
 
-module.exports = { authorValidationRules, validate, }
+module.exports = { authorValidationRules, validateAuthor, }

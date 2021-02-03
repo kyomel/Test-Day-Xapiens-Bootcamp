@@ -5,9 +5,14 @@ const response = require('../helper/response');
 
 
 class userController {
-    static async getAuthor(req, res) {
-        const payload = await Author.findAll();
-        response({ message: "get all authors!", data: payload })(res);
+    static async getAuthor(req, res, next) {
+        try {
+            const payload = await Author.findAll();
+            response({ message: "get all authors!", data: payload })(res);
+        } catch (err) {
+            res.status(400);
+            next(err);
+        } 
     }
 
     static async getId(req, res) {

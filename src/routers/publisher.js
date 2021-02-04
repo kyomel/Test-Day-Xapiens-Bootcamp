@@ -1,11 +1,12 @@
 const routers = require('express').Router();
 const publisherController = require('../controllers/publisherController');
-const { publisherValidationRules, validatePublisher } = require('../middlewares/publisherValidator');
+const { publisherValidationRules } = require('../middlewares/publisherValidator');
+const { validateError } = require('../middlewares/validateError')
 
 routers.get('/', publisherController.getPublisher);
 routers.get('/:id', publisherController.getId);
 routers.delete('/:id', publisherController.delPublisher);
-routers.post('/', publisherValidationRules(), validatePublisher, publisherController.createPublisher);
-routers.post('/:id', publisherValidationRules(), validatePublisher, publisherController.updatePublisher);
+routers.post('/', publisherValidationRules(), validateError, publisherController.createPublisher);
+routers.post('/:id', publisherValidationRules(), validateError, publisherController.updatePublisher);
 
 module.exports = routers;

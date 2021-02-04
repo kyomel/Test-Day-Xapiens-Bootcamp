@@ -1,9 +1,9 @@
-const { check, validationResult } = require('express-validator');
+const { check } = require('express-validator');
 const { Book } = require('../db/models');
 
 const bookValidationRules = () => {
     return [
-        check('authorId').exist().isNumeric(),
+        check('authorId').exists().isNumeric(),
         check('publisherId').exists().isNumeric(),
         check('title').exists().isString(),
         check('price').exists().isDecimal(),
@@ -17,16 +17,6 @@ const bookValidationRules = () => {
     ]
 }
 
-const validateBook = (req, res, next) =>  {
-    const errors = validationResult(req)
-    if(errors.isEmpty()) {
-        return next()
-    }
-    const extractedErrors = []
-    errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
-    return res.status(422).json({
-        errors: extractedErrors,
-    })
-}
 
-module.exports = { bookValidationRules, validateBook, }
+
+module.exports = { bookValidationRules };

@@ -9,9 +9,14 @@ class bookController {
         response({ message: "get all books!", data: payload })(res);
     }
 
-    static async getId(req, res) {
-        const payload = await Book.findByPk(req.params.id);
-        response({ message: "get spesific book!", data: payload })(res);
+    static async getId(req, res, next) {
+        try {
+            const payload = await Book.findByPk(req.params.id);
+            response({ message: "get spesific book!", data: payload })(res);
+        } catch(err) {
+            res.status(404);
+            next(err);
+        }   
     }
 
     static async delBook(req, res) {

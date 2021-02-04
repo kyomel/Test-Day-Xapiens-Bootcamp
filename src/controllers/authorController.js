@@ -15,9 +15,14 @@ class userController {
         } 
     }
 
-    static async getId(req, res) {
-        const payload = await Author.findByPk(req.params.id);
-        response({ message: "get spesific author!", data: payload })(res);
+    static async getId(req, res, next) {
+        try {
+            const payload = await Author.findByPk(req.params.id);
+            response({ message: "get spesific author!", data: payload })(res);
+        } catch(err){
+            res.status(400);
+            next(err);
+        }
     }
 
     static async delAuthor(req, res) {

@@ -105,10 +105,9 @@ class userControl {
         }
     }
 
-    static async profile(req, res, next) {
+    static async profile(req, res) {
         res.status(200);
-        // res.data = req.user.entity;
-        next();
+        return res.json(req.user.entity);
     }
 }
 

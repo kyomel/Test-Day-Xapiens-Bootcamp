@@ -8,8 +8,6 @@ module.exports = async (req, res, next) => {
    try {
        let token = req.headers.authorization;
        let payload = jwt.verify(token, process.env.SECRET_KEY);
-       console.log({ payload });
-       
        req.user = await User.findByPk(payload.id);
        next();
    }

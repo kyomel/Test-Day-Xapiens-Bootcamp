@@ -1,6 +1,5 @@
 'use strict';
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const {
   Model
@@ -72,15 +71,8 @@ module.exports = (sequelize, DataTypes) => {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
-        access_token: this.getToken()
       }
     }
   });
-  User.prototype.getToken = function () {
-    return jwt.sign({
-      id: this.id,
-      email: this.email
-    }, process.env.SECRET_KEY);
-  }
   return User;
 };

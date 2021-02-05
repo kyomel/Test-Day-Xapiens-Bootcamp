@@ -106,25 +106,9 @@ class userControl {
     }
 
     static async profile(req, res, next) {
-        try {
-            const payload = await User.findByPk({
-                attributes: ['id','firstName','lastName','email'],
-            }, {
-                where: {
-                    id: req.params.id
-                }
-            })
-            const result = {
-                id_user: payload.id,
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                email: payload.email
-            }
-            return response({ message: "Profile show", data: result})(res, 200)
-        } catch (err) {
-            res.status(422);
-            next(err);
-        }
+        res.status(200);
+        // res.data = req.user.entity;
+        next();
     }
 }
 

@@ -1,5 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const {
   Model
 } = require('sequelize');
@@ -57,10 +59,28 @@ module.exports = (sequelize, DataTypes) => {
       },
       beforeCreate: instance => {
         instance.password = bcrypt.hashSync(instance.password, 10);
-      }
+      },
     },
     sequelize,
     modelName: 'User',
   });
+
+  Object.defineProperty(User.prototype, 'entity', {
+    get() {
+      return {
+        id: this.id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        access_token: this.getToken()
+      }
+    }
+  });
+  User.prototype.getToken = function () {
+    return jwt.sign({
+      id: this.id,
+      email: this.email
+    }, process.env.SECRET_KEY);
+  }
   return User;
 };

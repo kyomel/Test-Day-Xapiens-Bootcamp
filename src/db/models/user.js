@@ -1,5 +1,6 @@
 'use strict';
 const bcrypt = require('bcrypt');
+const { database } = require('faker');
 require('dotenv').config();
 const {
   Model
@@ -13,6 +14,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Author, {
+        foreignKey: 'user_id'
+      }),
+      User.hasMany(models.Book, {
+        foreignKey: 'user_id'
+      }),
+      User.hasMany(models.Publisher, {
+        foreignKey: 'user_id'
+      })
     }
   };
   User.init({
@@ -50,7 +60,13 @@ module.exports = (sequelize, DataTypes) => {
         msg: 'Email must be filled'
       }
     },
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    role: {
+      type: DataTypes.ENUM({
+        values: ['admin', 'user']
+      })
+    },
+    photo: DataTypes.STRING
   }, {
     hooks: {
       beforeValidate: instance => {

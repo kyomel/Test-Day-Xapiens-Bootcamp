@@ -11,14 +11,18 @@ class userControl {
             firstName,
             lastName,
             email,
-            password
+            password,
+            role,
+            photo
         } = req.body
         try {
             const payload = await User.create({
                 firstName,
                 lastName,
                 email,
-                password
+                password, 
+                role,
+                photo
             })
             return response({ message: "User register is success!", data: payload })(res, 200)
         } catch(err) {

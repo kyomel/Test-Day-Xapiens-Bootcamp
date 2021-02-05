@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       Publisher.hasMany(models.Book, {
         foreignKey: 'publisherId'
       })
-      Publisher.belongsToMany(models.Author, { through: 'Book', foreignKey: { name: 'publisherId' } });
+      Publisher.belongsToMany(models.Author, { through: 'Book', foreignKey: { name: 'publisherId' } }),
+      Publisher.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      })
     }
   };
   Publisher.init({

@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       }),
       Book.belongsTo(models.Publisher, {
         foreignKey: 'publisherId'
+      }),
+      Book.belongsTo(models.User, {
+        foreignKey: 'user_id'
       })
     }
   };

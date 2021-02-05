@@ -1,12 +1,11 @@
 'use strict'
 
-const { Author, User } = require('../db/models');
+const { Author } = require('../db/models');
 const response = require('../helper/response');
 
 
 class userController {
-        static async getAuthor(req, res, next) {
-            if (req.user.role == 'admin') {
+        static async getAuthor(req, res, next) {  
                 try {
                     const payload = await Author.findAll();
                     response({ message: "get all authors!", data: payload })(res);
@@ -14,7 +13,6 @@ class userController {
                     res.status(400);
                     next(err);
                 } 
-            }
         }
     
         static async getId(req, res, next) {

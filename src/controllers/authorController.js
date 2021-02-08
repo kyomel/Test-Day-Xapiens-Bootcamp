@@ -3,7 +3,9 @@
 const { Author } = require('../db/models');
 const response = require('../helper/response');
 const setCache = require('../helper/redisClient');
-const mailgun = require('../lib/mailgun');
+const Queue = require('bull');
+const QueueMQ = require('bullmq');
+const { setQueues, BullMQadapter, BullAdapter } = require('bull-board');
 
 class userController {
         static async getAuthor(req, res, next) {  
@@ -43,15 +45,6 @@ class userController {
                 lastName: req.body.lastName,
                 email: req.body.email
             })
-            const data = {
-                from: 'kyomel <michaellapandio04@gmail.com>',
-                to: `${payload.dataValues.user.dataValues.email}`,
-                subject: 'Siap - siap ada ledakan Buku Murah !',
-                text: `Thank you to register to my app.....
-                        regards
-                        Michael Stevan`
-            };
-            await mailgun.messages().send(data);
             response({ message: "add author success", data: payload})(res, 200);
             } catch(err) {
                 res.status(422);
@@ -87,7 +80,17 @@ class userController {
                 res.status(400);
                 next(err);
             }
-        }    
+        }
+        
+        static async queueRead(req, res) {
+            const asQueue = new Queue();
+            const asotherQueue = new Queue();
+
+            setQueues([
+                new BullAdapter(asQueue),
+                new BullAdapter(asotherQueue),
+            ]);
+        }
 }
 
 module.exports = userController;

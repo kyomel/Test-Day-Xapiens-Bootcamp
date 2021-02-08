@@ -2,12 +2,14 @@
 
 const { Author } = require('../db/models');
 const response = require('../helper/response');
-
+const setCache = require('../helper/redisClient');
+const mailgun = require('../lib/mailgun');
 
 class userController {
         static async getAuthor(req, res, next) {  
                 try {
                     const payload = await Author.findAll();
+                    setCache(req, payload);
                     response({ message: "get all authors!", data: payload })(res);
                 } catch (err) {
                     res.status(400);
@@ -41,6 +43,15 @@ class userController {
                 lastName: req.body.lastName,
                 email: req.body.email
             })
+            const data = {
+                from: 'kyomel <michaellapandio04@gmail.com>',
+                to: `${payload.dataValues.user.dataValues.email}`,
+                subject: 'Siap - siap ada ledakan Buku Murah !',
+                text: `Thank you to register to my app.....
+                        regards
+                        Michael Stevan`
+            };
+            await mailgun.messages().send(data);
             response({ message: "add author success", data: payload})(res, 200);
             } catch(err) {
                 res.status(422);

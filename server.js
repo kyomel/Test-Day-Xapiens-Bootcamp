@@ -3,6 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const redis = require('redis');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 const app = express();
@@ -35,3 +36,5 @@ errorHandler.forEach(handler => app.use(handler));
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
+module.exports = app;

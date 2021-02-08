@@ -4,6 +4,7 @@ const { User } = require('../db/models');
 const response = require('../helper/response');
 const token = require('../helper/token');
 const bcrypt = require('bcrypt');
+const mailgun = require('../lib/mailgun');
 
 class userControl {
     static async register(req, res, next) {
@@ -24,6 +25,15 @@ class userControl {
                 role,
                 photo
             })
+            const data = {
+                from: 'kyomel <michaellapandio04@gmail.com>',
+                to: `${payload.email}`,
+                subject: 'Siap - siap ada ledakan Buku Murah !',
+                text: `Thank you to ${payload.firstName} ${payload.lastName} register to my app.....
+                        regards
+                        Michael Stevan`
+            };
+            await mailgun.messages().send(data);
             return response({ message: "User register is success!", data: payload })(res, 200)
         } catch(err) {
             res.status(422);

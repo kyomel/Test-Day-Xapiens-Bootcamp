@@ -2,10 +2,12 @@
 
 const { Publisher } = require('../db/models');
 const response = require('../helper/response');
+const setCache = require('../helper/redisClient');
 
 class publisherController {
     static async getPublisher(req, res) {
         const payload = await Publisher.findAll();
+        setCache(req, payload);
         response({ message: "get all publishers!", data: payload })(res);
     }
 

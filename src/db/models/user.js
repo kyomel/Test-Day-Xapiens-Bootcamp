@@ -67,7 +67,8 @@ module.exports = (sequelize, DataTypes) => {
       })
     },
     photo: DataTypes.STRING
-  }, {
+  }, 
+  {
     hooks: {
       beforeValidate: instance => {
         instance.email = instance.email.toLowerCase();

@@ -33,7 +33,7 @@ sendMailQueue.process(async function (job, done) {
     try {
         const payload = await User.findAll({
             where: {
-                role: "user",
+                role: 'user',
             },
         });
         let emailResult = payload.map((data) => data.email);

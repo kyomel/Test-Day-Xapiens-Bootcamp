@@ -6,9 +6,6 @@ client.on("error", function (error) {
     console.log(error);
 })
 
-client.set("key", "value", redis.print);
-client.get("key", redis.print);
-
 const setCache = (req, payload) => {
     try {
         client.get(req.originalUrl, (err, reply) => {

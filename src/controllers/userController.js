@@ -1,9 +1,15 @@
 'use strict'
 
+const bcrypt = require('bcrypt');
+const Queue = require('bull');
+const QueueMQ = require('bullmq');
+const { setQueues, BullMQadapter, BullAdapter } = require('bull-board');
+
 const { User } = require('../db/models');
+const sendMail = require('../lib/welcomeEmail');
+const sendMailUser = require('../lib/emailUser');
 const response = require('../helper/response');
 const token = require('../helper/token');
-const bcrypt = require('bcrypt');
 const mailgun = require('../lib/mailgun');
 
 class userControl {
@@ -25,15 +31,8 @@ class userControl {
                 role,
                 photo
             })
-            const data = {
-                from: 'kyomel <michaellapandio04@gmail.com>',
-                to: `${payload.email}`,
-                subject: 'Siap - siap ada ledakan Buku Murah !',
-                text: `Thank you to ${payload.firstName} ${payload.lastName} register to my app.....
-                        regards
-                        Michael Stevan`
-            };
-            await mailgun.messages().send(data);
+            sendMail(payload.email);
+            // sendMail(mailgun);
             return response({ message: "User register is success!", data: payload })(res, 200)
         } catch(err) {
             res.status(422);
@@ -112,6 +111,7 @@ class userControl {
             if(!isPassword) {
                 throw new Error(`Wrong password!`)
             }
+            sendMailUser(instance.email);
             return response({ message: "Login success", data: token(instance)})(res, 200)
         } catch (err){
             res.status(403);
@@ -122,6 +122,16 @@ class userControl {
     static async profile(req, res) {
         res.status(200);
         return res.json(req.user.entity);
+    }
+
+   static async queueRead() {
+        const someQueue = new Queue();
+        const someOtherQueue = new Queue();
+
+        setQueues([
+            new BullAdapter(someQueue),
+            new BullAdapter(someOtherQueue),
+        ]);
     }
 }
 

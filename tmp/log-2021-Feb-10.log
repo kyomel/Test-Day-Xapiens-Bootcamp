@@ -12,3 +12,4 @@
 ::1 - - [10/Feb/2021:02:31:51 +0000] "GET /api/v1/users/1 HTTP/1.1" 200 386
 ::1 - - [10/Feb/2021:02:32:00 +0000] "PUT /api/v1/users/upload/photos/3 HTTP/1.1" 200 77
 ::1 - - [10/Feb/2021:02:33:42 +0000] "PUT /api/v1/users/upload/photos/3 HTTP/1.1" 200 66
+::1 - - [10/Feb/2021:06:15:33 +0000] "GET /api/v1/users/1 HTTP/1.1" 200 386

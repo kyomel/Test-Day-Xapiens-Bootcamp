@@ -68,14 +68,14 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING
   }, 
   {
-    // hooks: {
+    hooks: {
     //   beforeValidate: instance => {
     //     instance.email = instance.email.toLowerCase();
     //   },
-    //   beforeCreate: instance => {
-    //     instance.password = bcrypt.hashSync(instance.password, 10);
-    //   },
-    // },
+      beforeCreate: instance => {
+        instance.password = bcrypt.hashSync(instance.password, 10);
+      },
+    },
     sequelize,
     modelName: 'User',
   });

@@ -7,7 +7,13 @@ const { set } = require('../../server');
 
 class bookController {
     static async getBook(req, res) {
-        const payload = await Book.findAll();
+        const limit = req.query.limit || 10
+        const page = req.query.page || 1
+        const payload = await Book.findAll({
+            limit,
+            page,
+            offset: ((limit * page) - limit)
+        });
         // setCache(req, payload);
         response({ message: "get all books!", data: payload })(res);
     }

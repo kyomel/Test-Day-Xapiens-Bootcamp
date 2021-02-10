@@ -6,6 +6,7 @@ const upload = require('../middlewares/multerUser');
 
 routers.post('/', userControl.register);
 routers.post('/login', userControl.login);
+routers.get('/logout', userControl.logOut);
 routers.get('/auth/profile', authenticate, userControl.profile);
 routers.get('/', userControl.getAll);
 routers.get('/:id', userControl.getId);

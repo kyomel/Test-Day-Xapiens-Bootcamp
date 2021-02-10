@@ -6,7 +6,13 @@ const response = require('../helper/response');
 
 class publisherController {
     static async getPublisher(req, res) {
-        const payload = await Publisher.findAll();
+        const limit = req.query.limit || 10
+        const page = req.query.page || 1
+        const payload = await Publisher.findAll({
+            limit,
+            page,
+            offset: ((limit * page) - limit)
+        });
         // setCache(req, payload);
         response({ message: "get all publishers!", data: payload })(res);
     }

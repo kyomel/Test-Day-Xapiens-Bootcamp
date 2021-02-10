@@ -14,6 +14,7 @@ const cloudinary = require('../middlewares/cloudinary');
 require('dotenv').config();
 const response = require('../helper/response');
 const token = require('../helper/token');
+const deleteToken = require('../helper/deleteToken');
 
 // const mailgun = require('../lib/mailgun');
 class userControl {
@@ -143,6 +144,7 @@ class userControl {
              next(err);
          }
     }
+
    static async queueRead() {
         const someQueue = new Queue();
         const someOtherQueue = new Queue();
@@ -151,6 +153,15 @@ class userControl {
             new BullAdapter(someQueue),
             new BullAdapter(someOtherQueue),
         ]);
+    }
+
+    static async logOut(req, res, next) {
+        try {
+            let token = req.headers.authorization;
+            return response({ message: "OK" })(res,200)
+        } catch (err) {
+            next(err);
+        }
     }
 }
 

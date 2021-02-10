@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "a67530ac-e60c-4e49-944b-a7194f5ace5b",
+		"name": "Xapiens Test Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload photo authors",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/home/michaelstevanlapandio/Pictures/1_2DG1s9LxiPZWNHZbOWe7Yw.png"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/authors/uploadPhoto/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"authors",
+						"uploadPhoto",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Cover",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cover",
+							"type": "file",
+							"src": "/home/michaelstevanlapandio/Pictures/Screenshot from 2021-01-25 10-13-18.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/books/uploadCover/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"uploadCover",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RajaOngkir check data cost ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"origin\": \"501\",\n    \"destination\": \"114\",\n    \"weight\": 900,\n    \"courier\": \"jne\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/checkongkir/cost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"checkongkir",
+						"cost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RajaOngkir check city error ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"39\",\n    \"province\": \"5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/checkongkir/city",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"checkongkir",
+						"city"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Raja Ongkir check province error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/checkongkir/province",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"checkongkir",
+						"province"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,13 +2,13 @@
 
 const { Book, Author, Publisher } = require('../db/models');
 const response = require('../helper/response');
-const setCache = require('../helper/redisClient');
+// const setCache = require('../helper/redisClient');
 const { set } = require('../../server');
 
 class bookController {
     static async getBook(req, res) {
         const payload = await Book.findAll();
-        setCache(req, payload);
+        // setCache(req, payload);
         response({ message: "get all books!", data: payload })(res);
     }
 

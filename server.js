@@ -23,6 +23,8 @@ Sentry.init({
     tracesSampleRate: 1.0,
 });
 
+const PORT = process.env.PORT || 3000;
+
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
 app.use(cors());
@@ -34,4 +36,7 @@ app.use('/api/v1', routers);
 app.use(Sentry.Handlers.errorHandler());
 errorHandler.forEach(handler => app.use(handler));
 
-module.exports = app
+app.listen(PORT, () => {
+    console.log(`Server Start at ${Date()}`)
+    console.log(`Listening at http://localhost:${PORT}`);
+})

@@ -1,7 +1,0 @@
-const app = require('../server');
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server Start at ${Date()}`)
-    console.log(`Listening at http://localhost:${PORT}`);
-})

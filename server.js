@@ -3,7 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const redis = require('redis');
+// const redis = require('redis');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 

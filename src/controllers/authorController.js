@@ -2,7 +2,7 @@
 
 const { Author } = require('../db/models');
 const response = require('../helper/response');
-const setCache = require('../helper/redisClient');
+// const setCache = require('../helper/redisClient');
 const Queue = require('bull');
 const QueueMQ = require('bullmq');
 const { setQueues, BullMQadapter, BullAdapter } = require('bull-board');
@@ -11,7 +11,7 @@ class userController {
         static async getAuthor(req, res, next) {  
                 try {
                     const payload = await Author.findAll();
-                    setCache(req, payload);
+                    // setCache(req, payload);
                     response({ message: "get all authors!", data: payload })(res);
                 } catch (err) {
                     res.status(400);

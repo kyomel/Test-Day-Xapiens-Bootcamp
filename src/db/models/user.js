@@ -1,6 +1,5 @@
 'use strict';
 const bcrypt = require('bcrypt');
-const { database } = require('faker');
 require('dotenv').config();
 const {
   Model

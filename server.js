@@ -34,4 +34,4 @@ app.use('/api/v1', routers);
 app.use(Sentry.Handlers.errorHandler());
 errorHandler.forEach(handler => app.use(handler));
 
-module.exports = app;
+module.exports = app

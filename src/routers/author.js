@@ -1,5 +1,5 @@
 const routers = require('express').Router();
-const caching = require('../middlewares/catching');
+// const caching = require('../middlewares/catching');
 const authenticate = require('../middlewares/authenticate');
 const ownership = require('../middlewares/checkOwnership');
 const authorController = require('../controllers/authorController');
@@ -11,7 +11,7 @@ const { validateError } = require('../middlewares/validateError');
 
 const maxSize = 1 * 800 * 800;
 
-routers.get('/', authenticate, ownership, caching, authorController.getAuthor);
+routers.get('/', authenticate, ownership, authorController.getAuthor);
 routers.get('/:id', authenticate, authorController.getId);
 routers.delete('/:id', authenticate, ownership, authorController.delAuthor);
 routers.post('/', authenticate, ownership, validator.authorValidationRules(), validateError ,authorController.createAuthor);

@@ -6,23 +6,16 @@ const QueueMQ = require('bullmq');
 const { setQueues, BullMQadapter, BullAdapter } = require('bull-board');
 
 const { User } = require('../db/models');
-const sendMail = require('../lib/welcomeEmail');
-const sendMailUser = require('../lib/emailUser');
+const serviceQueueMail= require('../lib/welcomeEmail');
+// const sendMailUser = require('../lib/emailUser');
 const path = require('path');
 // const cloudinary = require('../middlewares/cloudinary');
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('../middlewares/cloudinary');
 require('dotenv').config();
 const response = require('../helper/response');
 const token = require('../helper/token');
 
 // const mailgun = require('../lib/mailgun');
-
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-})
-
 class userControl {
     static async register(req, res, next) {
         let {
@@ -42,7 +35,7 @@ class userControl {
                 role,
                 photo
             })
-            sendMail(payload.email);
+            serviceQueueMail.welcomeEmail(payload.email);
             // sendMail(mailgun);
             return response({ message: "User register is success!", data: payload })(res, 200)
         } catch(err) {
@@ -137,27 +130,19 @@ class userControl {
 
     static async uploadPhotoUser(req, res, next){
          try {
-            let path = "public/upload/users/";
-            let fileName = req.file.filename;
-            let resultPathFileName = path + fileName;      
-            cloudinary.uploader
-              .upload(resultPathFileName)
-              .then(async (result) => {
-                console.log("res",result)
-                const datas = await User.update(
-                  {
-                    photo: result.url,
-                  },
-                  { where: { id: req.params.id } }
-                );
-              });
-          } catch (error) {
-            res.status(400);
-            next(error);
-          }
-          return response({ message: "photo upload success"})(res, 200);
+             const result = await cloudinary.uploader.upload(req.file.path);
+             const payload = await User.update({
+                 photo: result.url,
+             }, {
+                 where: {
+                     id: req.params.id,
+                 },
+             })
+             response({ message: "upload photos user success", data: payload})(res, 200)
+         } catch (err) {
+             next(err);
+         }
     }
-
    static async queueRead() {
         const someQueue = new Queue();
         const someOtherQueue = new Queue();
